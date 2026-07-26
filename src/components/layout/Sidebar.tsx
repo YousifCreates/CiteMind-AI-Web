@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   PanelLeftClose,
   PanelLeftOpen,
@@ -27,7 +27,6 @@ interface ActivityItem {
 
 export default function Sidebar() {
   const navigate = useNavigate()
-  const location = useLocation()
   const isCollapsed = useUIStore((state) => state.isSidebarCollapsed)
   const toggleSidebar = useUIStore((state) => state.toggleSidebar)
 

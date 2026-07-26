@@ -9,12 +9,6 @@ import {
 import { saveAs } from 'file-saver'
 import type { LearningPathWithModules, Topic } from '../types'
 
-interface ModuleWithOptionalTopics {
-  title: string
-  description?: string
-  topics?: Topic[]
-}
-
 export async function exportCurriculumToDocx(
   path: LearningPathWithModules,
   moduleTopicsMap: Record<string, Topic[]>,

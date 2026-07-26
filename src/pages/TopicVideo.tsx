@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Sparkles, ArrowLeft } from 'lucide-react'
 import TopicVideoChat from '../components/youtube/TopicVideoChat'

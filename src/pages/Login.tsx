@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLogin } from '../hooks/useAuth'
 import { ROUTES } from '../constants'
@@ -7,7 +7,17 @@ import AuthLayout from '../components/auth/AuthLayout'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showColdStartNotice, setShowColdStartNotice] = useState(false)
   const { mutate: login, isPending, error } = useLogin()
+
+  useEffect(() => {
+    if (!isPending) {
+      setShowColdStartNotice(false)
+      return
+    }
+    const timer = setTimeout(() => setShowColdStartNotice(true), 5000)
+    return () => clearTimeout(timer)
+  }, [isPending])
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -79,6 +89,13 @@ export default function Login() {
         >
           {isPending ? 'Signing in...' : 'Sign in'}
         </button>
+
+        {showColdStartNotice && (
+          <p className="text-xs text-[#8B93A7] text-center leading-relaxed">
+            Waking up the server — this can take up to 30 seconds on the first
+            request after a period of inactivity.
+          </p>
+        )}
       </form>
 
 
